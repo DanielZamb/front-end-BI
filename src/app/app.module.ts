@@ -9,6 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { InputComponent } from './input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
+import { MainScreenComponent } from './main-screen/main-screen.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { ApiService } from './services/api.service';
     LoginComponent,
     RegisterComponent,
     InputComponent,
+    MainScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { ApiService } from './services/api.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ ApiService ],
+  providers: [ ApiService, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,31 @@
-<p>input works!</p>
+<div class="container mt-5">
+    <h1 class="text-center">Submit Review</h1>
+    <form [formGroup]="reviewForm" (ngSubmit)="onReview()" class="mt-4">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" formControlName="name" class="form-control" id="name" placeholder="Type your full name here" />
+      </div>
+      <div class="form-group">
+        <label for="movieName">Movie Name</label>
+        <input type="text" formControlName="movieName" class="form-control" id="movieName" placeholder="Type the movie name here" />
+      </div>
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <input type="text" formControlName="genre" class="form-control" id="genre" placeholder="Type the genre of the movie here" />
+      </div>
+      <div class="form-group">
+        <label for="text">Review</label>
+        <textarea formControlName="text" class="form-control" id="text" rows="4" placeholder="Type your review here"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="feeling">Feeling</label>
+        <select formControlName="feeling" class="form-control" id="feeling">
+          <option value="" disabled>Select your feeling about the movie</option>
+          <option value="POSITIVE">Positive</option>
+          <option value="NEGATIVE">Negative</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.valid">Submit Review</button>
+    </form>
+  </div>
+  
