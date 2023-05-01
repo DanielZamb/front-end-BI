@@ -1,5 +1,7 @@
+import { ApiService } from './../services/api.service';
 import { Component } from '@angular/core';
 import { FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
+import { RegisterForm } from '../models/register.model';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,7 @@ import { FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
 export class RegisterComponent {
   registerForm: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private apiService: ApiService;) {
     this.registerForm = fb.group({
         name: fb.control('', Validators.required),
         email: fb.control('', [Validators.required, Validators.email]),
@@ -25,7 +27,20 @@ export class RegisterComponent {
     this.registerForm.reset({userType: 'select your user type'});
   }
 
-  onRegister():void{
+  onRegister(){
+    if(this.registerForm.valid){
+      
+      const registerData: RegisterForm = {
+        name: this.registerForm.value.name,
+        email: this.registerForm.value.email,
+        password: this.registerForm.value.password,
+        userType: this.registerForm.value.userType,
+      }
+
+      this.apiService.registerUser(registerData).subscribe((result) => {
+        console.log(result);
+      }); 
+    }
 
   }
 }
