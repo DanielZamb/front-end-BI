@@ -1,5 +1,7 @@
+import { ApiService } from './../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoginForm } from '../models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private apiService: ApiService) {
     this.loginForm = fb.group({
         email: fb.control('', [Validators.required, Validators.email]),
         password: fb.control('', [Validators.required, Validators.minLength(6)]),
@@ -21,8 +23,17 @@ export class LoginComponent implements OnInit {
     this.loginForm.reset({password: 'type your password'});
   }
 
-  onLogin():void{
-
-  }
-
+  onLogin() {
+      if (this.loginForm.valid) {
+        const credentials: LoginForm = {
+          email: this.loginForm.value.email,
+          password: this.loginForm.value.password,
+        };
+    
+        this.apiService.loginUser(credentials).subscribe((result) => {
+          console.log(result);
+        });
+      }
+    }
 }
+  

@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InputComponent } from './input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [ ApiService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

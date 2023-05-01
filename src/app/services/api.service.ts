@@ -5,9 +5,11 @@ import { LoginForm } from './../models/login.model';
 import { RegisterForm } from './../models/register.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class ApiService {
-    private readonly BACKEND_URL = 'http://localhost:3000';
+    private readonly BACKEND_URL = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
