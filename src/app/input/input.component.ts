@@ -26,7 +26,7 @@ export class InputComponent {
     this.reviewForm.reset({name: 'type your full name here'});
     this.reviewForm.reset({movieName: 'type the movie name here'});
     this.reviewForm.reset({genre: 'type the genre of the movie here'});
-    this.reviewForm.reset({Text: 'type your review here'});
+    this.reviewForm.reset({text: 'type your review here'});
     this.reviewForm.reset({feeling: 'select your feeling about the movie (POSITIVE, NEGATIVE)'});
     this.userid = this.authService.getUser()!.id;
         if (this.userid == null || this.userid == 0) {
@@ -41,7 +41,7 @@ export class InputComponent {
           name: this.reviewForm.value.name,
           movieName: this.reviewForm.value.movieName,
           genre: this.reviewForm.value.genre,
-          text: this.reviewForm.value.Text,
+          text: this.reviewForm.value.text,
           feeling: this.reviewForm.value.feeling,
         }
   
