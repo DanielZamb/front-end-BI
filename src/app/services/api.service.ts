@@ -1,3 +1,5 @@
+import { InputResponse } from '../models/input-response';
+import { Input } from '../models/input.model';
 import { User } from '../models/user.model';
 import { LoginForm } from './../models/login.model';
 import { RegisterForm } from './../models/register.model';
@@ -17,8 +19,8 @@ export class ApiService {
     return this.http.post<User>(`${this.BACKEND_URL}/api/usuario`, loginForm);
   }
 
-  submitReview(userId: number): Observable<any> {
-    return this.http.post(`${this.BACKEND_URL}/api/resenias/usuario/`, { userId });
+  submitReview(input: Input,userId: number): Observable<InputResponse> {
+    return this.http.post<InputResponse>(`${this.BACKEND_URL}/api/resenias/usuario/${userId}`, input);
   }
 
   // Add more methods for fetching past reviews and model stats
