@@ -3,6 +3,8 @@ import { ApiService } from './../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginForm } from '../models/login.model';
+import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,10 @@ import { LoginForm } from '../models/login.model';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(fb: FormBuilder, private apiService: ApiService, private authService: AuthService) {
+  constructor(fb: FormBuilder,
+    private apiService: ApiService, 
+    private authService: AuthService, 
+    private router: Router) {
     this.loginForm = fb.group({
         email: fb.control('', [Validators.required, Validators.email]),
         password: fb.control('', [Validators.required, Validators.minLength(6)]),
@@ -31,9 +36,10 @@ export class LoginComponent implements OnInit {
           password: this.loginForm.value.password,
         };
     
-        this.apiService.loginUser(credentials).subscribe((result) => {
-          this.authService.setUser(result)
-          console.log("Logged In:", result);
+        this.apiService.loginUser(credentials).subscribe((user: User) => {
+          this.authService.setUser(user);
+          console.log("Logged In:", user);
+          this.router.navigate(['/review']);
         });
       }
     }

@@ -10,6 +10,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class InputComponent {
   reviewForm: FormGroup;
+  private userid: number = 0;
 
   constructor(fb: FormBuilder, private apiService: ApiService, private authService: AuthService) {
     this.reviewForm = fb.group({
@@ -27,15 +28,15 @@ export class InputComponent {
     this.reviewForm.reset({genre: 'type the genre of the movie here'});
     this.reviewForm.reset({Text: 'type your review here'});
     this.reviewForm.reset({feeling: 'select your feeling about the movie (POSITIVE, NEGATIVE)'});
+    this.userid = this.authService.getUser()!.id;
+        if (this.userid == null || this.userid == 0) {
+          console.log("User not logged in");
+        }
+    console.log("User logged in: ",this.authService.getUser());
   }
 
   onReview(){
     if(this.reviewForm.valid){
-        const userid = this.authService.getUser()!.id;
-        if (userid == null) {
-          console.log("User not logged in");
-          return;
-        }
         const reviewData: Input = {
           name: this.reviewForm.value.name,
           movieName: this.reviewForm.value.movieName,
@@ -44,7 +45,7 @@ export class InputComponent {
           feeling: this.reviewForm.value.feeling,
         }
   
-        this.apiService.submitReview(reviewData, userid).subscribe((result) => {
+        this.apiService.submitReview(reviewData, this.userid).subscribe((result) => {
           console.log(result);
         });
     }

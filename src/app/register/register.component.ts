@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
 import { RegisterForm } from '../models/register.model';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
+import { User } from '../models/user.model';
+
 
 @Component({
   selector: 'app-register',
@@ -12,7 +15,10 @@ import { AuthService } from '../services/auth.service';
 export class RegisterComponent {
   registerForm: FormGroup;
 
-  constructor(fb: FormBuilder, private apiService: ApiService, private authService: AuthService) {
+  constructor(fb: FormBuilder, 
+    private apiService: ApiService, 
+    private authService: AuthService, 
+    private router: Router) {
     this.registerForm = fb.group({
         name: fb.control('', Validators.required),
         email: fb.control('', [Validators.required, Validators.email]),
@@ -37,9 +43,10 @@ export class RegisterComponent {
         type: this.registerForm.value.type,
       }
 
-      this.apiService.registerUser(registerData).subscribe((result) => {
-        this.authService.setUser(result);
-        console.log("Registered",result);
+      this.apiService.registerUser(registerData).subscribe((user: User) => {
+        this.authService.setUser(user);
+        console.log("Registered: ",user);
+        this.router.navigate(['/review']);
       }); 
     }
 
