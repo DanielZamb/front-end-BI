@@ -17,7 +17,7 @@ export class RegisterComponent {
         name: fb.control('', Validators.required),
         email: fb.control('', [Validators.required, Validators.email]),
         password: fb.control('', [Validators.required, Validators.minLength(6)]),
-        userType: fb.control('', Validators.required),
+        type: fb.control('', Validators.required),
     });
   }
 
@@ -25,7 +25,7 @@ export class RegisterComponent {
     this.registerForm.reset({name: 'type your full name here'});
     this.registerForm.reset({email: 'provide a valid email'});
     this.registerForm.reset({password: 'type your password'});
-    this.registerForm.reset({userType: 'select your user type'});
+    this.registerForm.reset({type: 'select your user type'});
   }
 
   onRegister(){
@@ -34,7 +34,7 @@ export class RegisterComponent {
         name: this.registerForm.value.name,
         email: this.registerForm.value.email,
         password: this.registerForm.value.password,
-        type: this.registerForm.value.usertype,
+        type: this.registerForm.value.type,
       }
 
       this.apiService.registerUser(registerData).subscribe((result) => {
