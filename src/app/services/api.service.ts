@@ -18,7 +18,7 @@ export class ApiService {
   }
 
   loginUser(loginForm: LoginForm): Observable<User> {
-    return this.http.post<User>(`${this.BACKEND_URL}/api/usuario`, loginForm);
+    return this.http.get<User>(`${this.BACKEND_URL}/api/usuario`, { ...loginForm, responseType: 'json' })
   }
 
   submitReview(input: Input,userId: number): Observable<InputResponse> {
