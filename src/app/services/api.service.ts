@@ -25,5 +25,10 @@ export class ApiService {
     return this.http.post<InputResponse>(`${this.BACKEND_URL}/api/resenias/usuario/${userId}`, input);
   }
 
+  getPastReviews(userId: number): Observable<Input[]> {
+    return this.http.get<Input[]>(`${this.BACKEND_URL}/api/resenias/usuario/${userId}`);
+  }
+  
+
   // Add more methods for fetching past reviews and model stats
 }

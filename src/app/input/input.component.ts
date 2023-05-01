@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class InputComponent {
   reviewForm: FormGroup;
   private userid: number = 0;
+  public pastReviews: Input[] = [];
 
   constructor(fb: FormBuilder, private apiService: ApiService, private authService: AuthService) {
     this.reviewForm = fb.group({
@@ -33,6 +34,9 @@ export class InputComponent {
           console.log("User not logged in");
         }
     console.log("User logged in: ",this.authService.getUser());
+    this.apiService.getPastReviews(this.userid).subscribe((reviews: Input[]) => {
+      this.pastReviews = reviews;
+    });
   }
 
   onReview(){
