@@ -3,6 +3,7 @@ import { FormBuilder,FormGroup, FormControl, Validators } from '@angular/forms';
 import { Input } from '../models/input.model';
 import { ApiService } from './../services/api.service';
 import { AuthService } from '../services/auth.service';
+import { InputResponse } from '../models/input-response';
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
@@ -12,6 +13,15 @@ export class InputComponent {
   reviewForm: FormGroup;
   private userid: number = 0;
   public pastReviews: Input[] = [];
+  curentReview: InputResponse = {
+    id: 0,
+    name: '',
+    movieName: '',
+    genre: '',
+    text: '',
+    feeling: '',
+    modelFeeling: '',
+  };
 
   constructor(fb: FormBuilder, private apiService: ApiService, private authService: AuthService) {
     this.reviewForm = fb.group({
@@ -52,6 +62,8 @@ export class InputComponent {
         this.apiService.submitReview(reviewData, this.userid).subscribe((result) => {
           console.log(result);
         });
+        
+
     }
   }
 

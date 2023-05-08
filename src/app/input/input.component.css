@@ -1,0 +1,87 @@
+.background-review{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: url(/assets/sala_cine.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.blur{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(3px); 
+    height: 100%;
+    width: 100%;
+}
+.background-review .container-fluid,
+.background-review .row {
+   margin-left: 0;
+   margin-right: 0;
+  }
+
+.review-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1000px;
+  padding: 40px;
+  margin: 20px auto;
+  transform: translate(-50%, -55%);
+  background: rgba(0,0,0,.9);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.button {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 6.5em;
+    height: 2.3em;
+    margin: 0.5em;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 0.625em;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+   }
+   
+   button:hover {
+    color: black;
+   }
+   
+   button:after {
+    content: "";
+    background: white;
+    position: absolute;
+    z-index: -1;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.5s;
+   }
+   
+   button:hover:after {
+    transform: skewX(-45deg) scale(1, 1);
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+   }
+
+   button[disabled]{
+    cursor: not-allowed;
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
+  

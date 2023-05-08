@@ -1,20 +1,31 @@
 
-<div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3 mt-5">
-        <h2 class="text-center">Login</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="mt-4">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input formControlName="email" placeholder="Email" type="email" class="form-control" id="email" />
+<div class="container-fluid background-login">
+    <div class="blur">
+      <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+          <div class="card text-bg-dark login-box">
+            <div class="card-header">
+              <h2 class="text-center">Login</h2>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="mt-4">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input formControlName="email" placeholder="Email" type="email" class="form-control" id="email" />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input formControlName="password" placeholder="Password" type="password" class="form-control" id="password" />
+                </div>
+  
+              </form>
+              <div>
+                <button type="submit" [disabled]="loginForm.invalid" class="button">Login</button>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input formControlName="password" placeholder="Password" type="password" class="form-control" id="password" />
-          </div>
-          <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
-  
+

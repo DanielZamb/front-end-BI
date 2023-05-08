@@ -6,10 +6,12 @@ import { RegisterForm } from './../models/register.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { ModelResponse } from '../models/model-response';
 
 @Injectable()
 export class ApiService {
     private readonly BACKEND_URL = 'http://localhost:8080';
+    private readonly BACKEND_MODELO = 'https://localhost:8000';
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +29,10 @@ export class ApiService {
 
   getPastReviews(userId: number): Observable<Input[]> {
     return this.http.get<Input[]>(`${this.BACKEND_URL}/api/resenias/usuario/${userId}`);
+  }
+
+  getModelReview(text: string): Observable<ModelResponse> {
+    return this.http.get<ModelResponse>(`${this.BACKEND_MODELO}/${text}`);
   }
   
 
